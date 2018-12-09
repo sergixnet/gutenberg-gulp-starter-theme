@@ -1,0 +1,20 @@
+.editor-styles-wrapper .wp-block-paragraph {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300; }
+
+.editor-block-list__block[data-type='core/heading'] h1,
+.editor-block-list__block[data-type='core/heading'] h2,
+.editor-block-list__block[data-type='core/heading'] h3,
+.editor-block-list__block[data-type='core/heading'] h4,
+.editor-block-list__block[data-type='core/heading'] h5,
+.editor-block-list__block[data-type='core/heading'] h6 {
+  font-family: "Merriweather", serif;
+  font-weight: 900; }
+
+.editor-post-title__block .editor-post-title__input {
+  font-family: "Merriweather", serif;
+  font-weight: 900; }
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZWRpdG9yLXN0eWxlLmNzcyIsInNvdXJjZXMiOlsiZWRpdG9yLXN0eWxlLnNjc3MiLCJzZXR0aW5ncy9fdmFyaWFibGVzLnNjc3MiLCJ0b29scy9fbWl4aW5zLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR0EsQUFFQyxzQkFGcUIsQ0FFckIsbUJBQW1CLENBQUM7RUVHcEIsV0FBVyxFRGdERCxXQUFXLEVBQUUsVUFBVTtFQy9DakMsV0FBVyxFRG1ERyxHQUFHLEdEckRoQjs7QUFHRixBQUNDLHlCQUR3QixDQUFBLEFBQUEsU0FBQyxDQUFVLGNBQWMsQUFBeEIsRUFDekIsRUFBRTtBQURILHlCQUF5QixDQUFBLEFBQUEsU0FBQyxDQUFVLGNBQWMsQUFBeEIsRUFFekIsRUFBRTtBQUZILHlCQUF5QixDQUFBLEFBQUEsU0FBQyxDQUFVLGNBQWMsQUFBeEIsRUFHekIsRUFBRTtBQUhILHlCQUF5QixDQUFBLEFBQUEsU0FBQyxDQUFVLGNBQWMsQUFBeEIsRUFJekIsRUFBRTtBQUpILHlCQUF5QixDQUFBLEFBQUEsU0FBQyxDQUFVLGNBQWMsQUFBeEIsRUFLekIsRUFBRTtBQUxILHlCQUF5QixDQUFBLEFBQUEsU0FBQyxDQUFVLGNBQWMsQUFBeEIsRUFNekIsRUFBRSxDQUFDO0VFSEgsV0FBVyxFRDRDRyxjQUFjLEVBQUUsS0FBSztFQzNDbkMsV0FBVyxFRGdETyxHQUFHLEdENUNwQjs7QUFJRixBQUNDLHlCQUR3QixDQUN0Qix5QkFBeUIsQ0FBQztFRVY1QixXQUFXLEVENENHLGNBQWMsRUFBRSxLQUFLO0VDM0NuQyxXQUFXLEVEZ0RPLEdBQUcsR0RyQ3BCIn0= */
+
+/*# sourceMappingURL=editor-style.css.map */

@@ -1,0 +1,28 @@
+@import 'settings/variables';
+@import 'tools/mixins';
+
+.editor-styles-wrapper {
+
+	.wp-block-paragraph {
+		@include body-fonts;
+	}
+}
+
+.editor-block-list__block[data-type='core/heading'] {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@include headings-fonts;
+	}
+}
+
+
+.editor-post-title__block {
+	& .editor-post-title__input {
+		@include headings-fonts;
+	}
+}
+

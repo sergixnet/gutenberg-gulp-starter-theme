@@ -1,0 +1,16 @@
+@mixin wrapper ($width, $max-width: $content-max-width) {
+  margin-left: auto;
+  margin-right: auto;
+  width: $width;
+  max-width: $max-width;
+}
+
+@mixin body-fonts () {
+	font-family: $body-font-family;
+	font-weight: $body-font-weight;
+}
+
+@mixin headings-fonts () {
+	font-family: $headings-font-family;
+	font-weight: $headings-font-weight;
+}

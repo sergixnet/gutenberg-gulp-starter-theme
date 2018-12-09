@@ -1,0 +1,288 @@
+<?php
+/**
+ * Gutenbergtheme functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package Gutenbergtheme
+ */
+
+if ( ! function_exists( 'gutenbergtheme_setup' ) ) :
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	function gutenbergtheme_setup() {
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on gutenbergtheme, use a find and replace
+		 * to change 'gutenbergtheme' to the name of your theme in all the template files.
+		 */
+		load_theme_textdomain( 'gutenbergtheme', get_template_directory() . '/languages' );
+
+		// Add default posts and comments RSS feed links to head.
+		add_theme_support( 'automatic-feed-links' );
+
+		/*
+		 * Let WordPress manage the document title.
+		 * By adding theme support, we declare that this theme does not use a
+		 * hard-coded <title> tag in the document head, and expect WordPress to
+		 * provide it for us.
+		 */
+		add_theme_support( 'title-tag' );
+
+		/*
+		 * Enable support for Post Thumbnails on posts and pages.
+		 *
+		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+		 */
+		add_theme_support( 'post-thumbnails' );
+
+		// This theme uses wp_nav_menu() in one location.
+		register_nav_menus( array(
+			'menu-1' => esc_html__( 'Primary', 'gutenbergtheme' ),
+		) );
+
+		/*
+		 * Switch default core markup for search form, comment form, and comments
+		 * to output valid HTML5.
+		 */
+		add_theme_support( 'html5', array(
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		) );
+
+		// Set up the WordPress core custom background feature.
+		add_theme_support( 'custom-background', apply_filters( '_s_custom_background_args', array(
+			'default-color' => 'ffffff',
+			'default-image' => '',
+		) ) );
+
+		// Add theme support for selective refresh for widgets.
+		add_theme_support( 'customize-selective-refresh-widgets' );
+
+		/**
+		 * Add support for core custom logo.
+		 *
+		 * @link https://codex.wordpress.org/Theme_Logo
+		 */
+		add_theme_support( 'custom-logo', array(
+			'height'      => 250,
+			'width'       => 250,
+			'flex-width'  => true,
+			'flex-height' => true,
+		) );
+
+		// Adding support for core block visual styles.
+		add_theme_support( 'wp-block-styles' );
+
+		// Add support for full and wide align images.
+		add_theme_support( 'align-wide' );
+
+		// Add support for custom color scheme.
+		add_theme_support( 'editor-color-palette', array(
+			array(
+				'name'  => __( 'White', 'gutenbergtheme' ),
+				'slug'  => 'white',
+				'color' => '#ffffff',
+			),
+			array(
+				'name'  => __( 'Black', 'gutenbergtheme' ),
+				'slug'  => 'black',
+				'color' => '#000000',
+			),
+			array(
+				'name'  => __( 'Dark Grey', 'gutenbergtheme' ),
+				'slug'  => 'dark-grey',
+				'color' => '#4A4A4A',
+			),
+			array(
+				'name'  => __( 'Light Grey', 'gutenbergtheme' ),
+				'slug'  => 'light-grey',
+				'color' => '#eee',
+			),
+			array(
+				'name'  => __( 'Blue Margerite', 'gutenbergtheme' ),
+				'slug'  => 'blue-margerite',
+				'color' => '#7C71C5',
+			),
+			array(
+				'name'  => __( 'Lila', 'gutenbergtheme' ),
+				'slug'  => 'lila',
+				'color' => '#980868',
+			),
+			array(
+				'name'  => __( 'Orange', 'gutenbergtheme' ),
+				'slug'  => 'orange',
+				'color' => '#F5A623',
+			),
+			array(
+				'name'  => __( 'Turcoise', 'gutenbergtheme' ),
+				'slug'  => 'turcoise',
+				'color' => '#00DDE5',
+			),
+			array(
+				'name'  => __( 'Green', 'gutenbergtheme' ),
+				'slug'  => 'green',
+				'color' => '#9BBF27',
+			),
+		) );
+
+		// Add support for responsive embeds.
+		add_theme_support( 'responsive-embeds' );
+
+
+		$dist_dir = get_theme_root_uri() . "/" . wp_get_theme() . "/dist";
+		/* environement */
+		// Set your environment/url pairs
+		$environments = array(
+			'local' => 'wpdev.test',
+			'staging' => 'staging.wpdev.test',
+			'production' => 'production.wpdev.test'
+		);
+		// Get the hostname
+		$http_host = $_SERVER['HTTP_HOST'];
+		// Loop through $environments to see if there’s a match
+		foreach ($environments as $environment => $hostname) {
+			//echo $hostname . " wwwww";
+			if (stripos($http_host, $hostname) !== false) {
+				define('ENVIRONMENT', $environment);
+				break;
+			}
+		}
+		if (ENVIRONMENT == 'local') {
+			define('ASSETSDIR', get_template_directory_uri() . '/assets');
+		} else {
+			define('ASSETSDIR', $dist_dir . '/assets');
+		}
+	}
+endif;
+add_action( 'after_setup_theme', 'gutenbergtheme_setup' );
+
+/**
+ * Set the content width in pixels, based on the theme's design and stylesheet.
+ *
+ * Priority 0 to make it available to lower priority callbacks.
+ *
+ * @global int $content_width
+ */
+function gutenbergtheme_content_width() {
+	$GLOBALS['content_width'] = apply_filters( 'gutenbergtheme_content_width', 640 );
+}
+add_action( 'after_setup_theme', 'gutenbergtheme_content_width', 0 );
+
+/**
+ * Register Google Fonts
+ */
+function gutenbergtheme_fonts_url() {
+	$fonts_url = '';
+
+	/*
+	 *Translators: If there are characters in your language that are not
+	 * supported by Google Font, translate this to 'off'. Do not translate
+	 * into your own language.
+	 */
+	$google_fonts = esc_html_x( 'on', 'Google fonts: on or off', 'gutenbergtheme' );
+
+	if ( 'off' !== $google_fonts ) {
+		$font_families = array();
+		$font_families[] = 'Merriweather:900|Open Sans:300,300i,800';
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, 'https://fonts.googleapis.com/css' );
+	}
+
+	return $fonts_url;
+
+}
+
+/**
+ * Enqueue scripts and styles.
+ */
+function gutenbergtheme_scripts() {
+	wp_enqueue_style( 'gutenbergbase-style', get_stylesheet_uri() );
+
+	wp_enqueue_style( 'gutenbergtheme-fonts', gutenbergtheme_fonts_url() );
+
+	if (ENVIRONMENT == 'local') {
+        wp_enqueue_style('main', get_template_directory_uri() . '/assets/css/main.css');
+		wp_enqueue_style( 'gutenbergthemeblocks-style', get_template_directory_uri() . '/assets/css/blocks.css' );
+    } else {
+        wp_enqueue_style('main', ASSETSDIR . '/css/main.min.css');
+	}
+
+	if (ENVIRONMENT == 'local') {
+		wp_enqueue_script( 'gutenbergtheme-navigation', get_template_directory_uri() . '/assets/js/navigation.js', array(), '20151215', true );
+
+		wp_enqueue_script( 'gutenbergtheme-skip-link-focus-fix', get_template_directory_uri() . '/assets/js/skip-link-focus-fix.js', array(), '20151215', true );
+
+		wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array(), '20151215', true);
+
+	} else {
+		wp_enqueue_script( 'main', ASSETSDIR . '/js/navigation.min.js', array(), '20151215', true );
+		wp_enqueue_script( 'main', ASSETSDIR . '/js/skip-link-focus-fix.min.js', array(), '20151215', true );
+		wp_enqueue_script( 'main', ASSETSDIR . '/js/main.min.js', array(), '20151215', true );
+	}
+
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'gutenbergtheme_scripts' );
+
+
+/**
+ * Enqueue editor styles for Gutenberg
+ */
+function gutenbergtheme_editor_styles() {
+	if (ENVIRONMENT == 'local'){
+		wp_enqueue_style( 'gutenbergtheme-editor-style', get_template_directory_uri() . '/assets/css/editor-style.css' );
+	} else {
+		wp_enqueue_style( 'gutenbergtheme-editor-style', ASSETSDIR . '/css/editor-style.css' );
+	}
+
+	wp_enqueue_style( 'gutenbergtheme-fonts', gutenbergtheme_fonts_url(), array(), null );
+}
+add_action( 'enqueue_block_editor_assets', 'gutenbergtheme_editor_styles' );
+
+
+
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/inc/template-functions.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+if ( defined( 'JETPACK__VERSION' ) ) {
+	require get_template_directory() . '/inc/jetpack.php';
+}

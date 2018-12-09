@@ -1,0 +1,69 @@
+// Color pallete
+
+$white  : #fff;
+$black  : #000000;
+$dark-grey   : #4A4A4A;
+$light-grey: #eee;
+
+$st-tropaz        : #284A90;
+$mountain-meadow  : #14B694;
+$crimsom          : #CF1332;
+$zest             : #E58824;
+$blue-marguerite  : #7C71C5;
+$lila: #980868;
+
+$orange: #F5A623;
+$turcoise: #00DDE5;
+$green: #9BBF27;
+
+
+// Color usage
+
+$color-primary: $blue-marguerite;
+$color-secondary: $lila;
+
+// Links
+
+$link-color: $color-primary;
+$link-color__visited: $link-color;
+$link-color__hover: $color-secondary;
+
+
+// Content and texture
+$content-max-width: 664px;
+
+
+// Breakpoints
+
+$bp1: 600px;
+$bp2: 780px;
+$bp3: 960px;
+$bp4: 1400px;
+$menu-break: 75rem;
+
+
+// Z-indexes
+
+$z-highest: 9000;
+$z-high: 3000;
+$z-middle: 0;
+$z-below: -3000;
+$z-bottomless: -9000;
+
+
+
+// Typography
+
+$opensans: 'Open Sans', sans-serif;
+$merriweather: 'Merriweather', serif;
+
+// Font weights
+$light-weight: 300;
+$bold-weight: 800;
+$extrabold-weight: 900;
+
+$body-font-family: $opensans;
+$body-font-weight: $light-weight;
+
+$headings-font-family: $merriweather;
+$headings-font-weight: $extrabold-weight;
